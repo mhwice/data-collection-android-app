@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/holo_purple">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/calubrate_gyro_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place your phone on a flat non-metallic surface"
+            android:layout_marginVertical="5dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/calibrate_gyro_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="Calibrate Gyroscope" />
+    </LinearLayout>
+</RelativeLayout>

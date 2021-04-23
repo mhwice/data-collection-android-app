@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="520dp"
+    android:background="@drawable/bottom_sheet_bg"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="78dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/peekView"
+        android:background="@android:color/transparent">
+
+        <View
+            android:id="@+id/draggable_rectangle"
+            android:layout_width="50dp"
+            android:layout_height="8dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_rectangle_dragger" />
+
+        <TextView
+            android:id="@+id/header_textview"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/bottom_sheet_peaktext"
+            android:textColor="@color/raspberry"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/hline1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/peekView"
+        android:background="@drawable/horizontal_line"/>
+
+    <TextView
+        android:id="@+id/floor_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:layout_below="@id/hline1"
+        android:background="@android:color/transparent"
+        android:text="@string/floor_text"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"/>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontal_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/floor_textview"
+        android:scrollbars="none"
+        android:overScrollMode="ifContentScrolls">
+
+        <LinearLayout
+            android:id="@+id/horizontal_scroll_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/hline2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/horizontal_scrollview"
+        android:background="@drawable/horizontal_line"/>
+
+    <TextView
+        android:id="@+id/edit_marker_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_below="@id/hline2"
+        android:background="@android:color/transparent"
+        android:text="@string/edit_marker_text"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"/>
+
+    <TableLayout
+        android:id="@+id/edit_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edit_marker_textview"
+        android:shrinkColumns="0" >
+
+        <TableRow
+            android:gravity="center_horizontal">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/add_edit_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <View
+                    android:id="@+id/add_edit_marker_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/unselected_circle" />
+
+                <ImageView
+                    android:id="@+id/add_edit_icon_image"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/add"
+                    android:tint="@color/raspberry"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/add_edit_marker_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/add_edit_marker_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/add_edit_marker_view"
+                    app:layout_constraintTop_toTopOf="@+id/add_edit_marker_view" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/delete_edit_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <View
+                    android:id="@+id/delete_edit_marker_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/unselected_circle" />
+
+                <ImageView
+                    android:id="@+id/delete_edit_icon_image"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/delete_marker"
+                    android:tint="@color/raspberry"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/delete_edit_marker_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/delete_edit_marker_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/delete_edit_marker_view"
+                    app:layout_constraintTop_toTopOf="@+id/delete_edit_marker_view" />
+            </android.support.constraint.ConstraintLayout>
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/add_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/add_marker"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/delete_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/delete_marker"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/hline3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/edit_table"
+        android:background="@drawable/horizontal_line"/>
+
+    <TextView
+        android:id="@+id/collect_fingerprint_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_below="@id/hline3"
+        android:background="@android:color/transparent"
+        android:text="@string/collect_fingerprint_text"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"/>
+
+    <TableLayout
+        android:id="@+id/collection_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/collect_fingerprint_textview"
+        android:shrinkColumns="0" >
+
+        <TableRow
+            android:gravity="center_horizontal">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/point_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp">
+
+                <View
+                    android:id="@+id/point_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/collection_options_bg" />
+
+                <ImageView
+                    android:id="@+id/point_icon_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/point_icon_without"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/point_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/point_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/point_view"
+                    app:layout_constraintTop_toTopOf="@+id/point_view" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/path_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp">
+
+                <View
+                    android:id="@+id/path_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/collection_options_bg" />
+
+                <ImageView
+                    android:id="@+id/path_icon_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/path_icon_without"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/path_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/path_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/path_view"
+                    app:layout_constraintTop_toTopOf="@+id/path_view" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/multipath_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp">
+
+                <View
+                    android:id="@+id/multipath_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/collection_options_bg" />
+
+                <ImageView
+                    android:id="@+id/multipath_icon_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/multipath_icon_without"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/multipath_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/multipath_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/multipath_view"
+                    app:layout_constraintTop_toTopOf="@+id/multipath_view" />
+            </android.support.constraint.ConstraintLayout>
+
+            <!--<android.support.constraint.ConstraintLayout-->
+                <!--android:id="@+id/stair_icon"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginStart="10dp"-->
+                <!--android:layout_marginEnd="5dp">-->
+
+                <!--<View-->
+                    <!--android:id="@+id/stair_view"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/collection_options_bg" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/stair_icon_image"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:src="@drawable/stair_icon_without"-->
+                    <!--android:scaleType="centerInside"-->
+                    <!--android:contentDescription="@null"-->
+                    <!--app:layout_constraintRight_toRightOf="@+id/stair_view"-->
+                    <!--app:layout_constraintLeft_toLeftOf="@+id/stair_view"-->
+                    <!--app:layout_constraintBottom_toBottomOf="@+id/stair_view"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/stair_view" />-->
+            <!--</android.support.constraint.ConstraintLayout>-->
+
+            <!--<android.support.constraint.ConstraintLayout-->
+                <!--android:id="@+id/io_icon"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginStart="5dp"-->
+                <!--android:layout_marginEnd="5dp">-->
+
+                <!--<View-->
+                    <!--android:id="@+id/io_view"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/collection_options_bg" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/io_icon_image"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:src="@drawable/io_icon_without"-->
+                    <!--android:scaleType="centerInside"-->
+                    <!--android:contentDescription="@null"-->
+                    <!--app:layout_constraintRight_toRightOf="@+id/io_view"-->
+                    <!--app:layout_constraintLeft_toLeftOf="@+id/io_view"-->
+                    <!--app:layout_constraintBottom_toBottomOf="@+id/io_view"-->
+                    <!--app:layout_constraintTop_toTopOf="@+id/io_view" />-->
+            <!--</android.support.constraint.ConstraintLayout>-->
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/point_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/point_text"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/path_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/path_text"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/multipath_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/multipath_text"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/stair_textview"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1"-->
+                <!--android:text="@string/stair_text"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:singleLine="true" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/io_textview"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:ellipsize="end"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1"-->
+                <!--android:text="@string/io_text"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:singleLine="true" />-->
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/hline4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/collection_options"
+        android:background="@drawable/horizontal_line"/>
+
+    <TextView
+        android:id="@+id/sensor_options_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_below="@id/hline4"
+        android:background="@android:color/transparent"
+        android:text="@string/sensor_options_text"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/sensor_options_textview"
+        android:shrinkColumns="0" >
+
+        <TableRow
+            android:gravity="center_horizontal">
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/wifi_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <View
+                    android:id="@+id/wifi_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/unselected_circle" />
+
+                <ImageView
+                    android:id="@+id/wifi_icon_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/wifi_icon"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/wifi_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/wifi_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/wifi_view"
+                    app:layout_constraintTop_toTopOf="@+id/wifi_view" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/bluetooth_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp">
+
+                <View
+                    android:id="@+id/bluetooth_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/unselected_circle" />
+
+                <ImageView
+                    android:id="@+id/bluetooth_icon_image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/bluetooth_icon"
+                    android:scaleType="centerInside"
+                    android:contentDescription="@null"
+                    app:layout_constraintRight_toRightOf="@+id/bluetooth_view"
+                    app:layout_constraintLeft_toLeftOf="@+id/bluetooth_view"
+                    app:layout_constraintBottom_toBottomOf="@+id/bluetooth_view"
+                    app:layout_constraintTop_toTopOf="@+id/bluetooth_view" />
+            </android.support.constraint.ConstraintLayout>
+        </TableRow>
+
+        <TableRow
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/wifi_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/wifi_text"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/bluetooth_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/bluetooth_text"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:singleLine="true" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

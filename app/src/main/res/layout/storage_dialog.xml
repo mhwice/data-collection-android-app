@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:padding="30dp"
+    android:background="@drawable/custom_dialog_bg">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.hookedonplay.decoviewlib.DecoView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/dynamicArcView"
+            android:layout_margin="8dp"
+            tools:ignore="MissingConstraints">
+        </com.hookedonplay.decoviewlib.DecoView>
+
+        <TextView
+            app:layout_constraintTop_toTopOf="@+id/dynamicArcView"
+            app:layout_constraintBottom_toBottomOf="@+id/dynamicArcView"
+            app:layout_constraintRight_toRightOf="@+id/dynamicArcView"
+            app:layout_constraintLeft_toLeftOf="@+id/dynamicArcView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:id="@+id/textPercentage" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/storageLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/storage_header_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Internal"
+            android:paddingVertical="5dp"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/storage_body_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Storage"
+            android:paddingBottom="15dp"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/storage_ratio_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text=""
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

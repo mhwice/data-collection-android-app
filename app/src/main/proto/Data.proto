@@ -1,0 +1,292 @@
+syntax = "proto2";
+
+package mcmaster.ilos.datacollectionapp.protobuf;
+option java_outer_classname = "ProtoData";
+
+
+
+
+
+/*
+ *    Represents a point in the global frame
+ */
+message Coordinate{
+
+    /* The coordinates of a marker in the global frame. This is acquired through
+     * Mapbox's OnMapClickListener(LatLng point). An example value is
+     * (43.25870550328875, -79.9209776793187) */
+    required double latitude = 1;
+    required double longitude = 2;
+
+    /* This is the relative altitude of a marker location (in meters). It is
+     * given by getAltitude(SensorManager.PRESSURE_STANDARD_ATMOSPHERE,
+     * sensorEvent.values[0]) where sensorEvent is of the type
+     * Sensor.TYPE_PRESSURE. An example value is (153.47913) */
+    optional float altitude = 3;
+}
+
+
+
+
+
+/*
+ *    Represents a single wifi scan
+ */
+message RSSItem{
+
+    /* The scan number since the current data collection started */
+    required uint32 scanNum = 1;
+
+    /* The timestamp of the scan since the last device boot (in nanoseconds).
+     * This is acquired by (scanResult.timestamp*1000) where scanResult is of
+     * the android.net.wifi.ScanResult class. An example of this is
+     * (1015588122707000) */
+    required uint64 timestamp = 2;
+
+    /* The BSSID of the AP. This is acquire by (scanResult.BSSID) where
+     * scanResult is of the android.net.wifi.ScanResult class. An example value
+     * is (8c:7f:3b:27:4d:37) */
+    required string bssid = 3;
+
+    /* The SSID of the network. This is acquire by (scanResult.SSID) where
+     * scanResult is of the android.net.wifi.ScanResult class. An example value
+     * is (FibeTVM91451SA02W3) */
+    optional string ssid = 4;
+
+    /* The RSSI of the scan (in dBm). This is acquire by (scanResult.level)
+     * where scanResult is of the android.net.wifi.ScanResult class. An example
+     * value is (-85) */
+    required sint32 rssi = 5;
+
+    /* The primary frequency (in MHz). This is acquire by (scanResult.frequency)
+     * where scanResult is of the android.net.wifi.ScanResult class. Example
+     * values are (5280) and (2452) */
+    optional uint32 frequency = 6;
+}
+
+
+
+
+
+/*
+ *    Represents a single bluetooth scan
+ */
+message BTItem{
+
+    /* The timestamp of the scan since the last device boot (in nanoseconds).
+     * This is acquried by scanResult.getTimestampNanos() where scanResult is of
+     * the class android.bluetooth.le.ScanResult. An example of this is
+     * (1015589350144138) */
+    required uint64 timestamp = 1;
+
+    /* The hardware address of the device. This is acquried by
+     * scanResult.getDevice().getAddress() where scanResult is of the class
+     * android.bluetooth.le.ScanResult. An example value is
+     * (D0:03:4B:27:E0:71) */
+    required string address = 2;
+
+    /* The RSSI of the scan (in dBm). This is acquried by scanResult.getRssi()
+     * where scanResult is of the class android.bluetooth.le.ScanResult. An
+     * example value is (-96) */
+    required sint32 rssi = 3;
+}
+
+
+
+
+
+/*
+ *    Represents a single cell signal, updated every 200ms
+ */
+message CellItem{
+
+    /* The timestamp (in nanoseconds) of when the when the cell signal was
+     * fetched by the device. This is acquired by SystemClock.ElapsedRealtimeNanos(). 
+     * I tried using CellInfoXXX.getTimestamp() where XXX can be one of 
+     * (Gsm, Cdma, Lte, Wcdma) but this was inaccurate */
+    required uint64 timestamp = 1;
+
+    /* One of (GSM, CDMA, LTE, WCDMA) */
+    required string type = 2;
+
+    /* The RSSI of the cell signal. The is acquired by
+     * getCellSignalStrength().getDbm() */
+    required sint32 rssi = 3;
+
+    /* A unique cell tower identifier. For GSM and WCDMA this is in the form
+     * "MCC,MNC,LAC,CID". For LTE this is in the form "MCC,MNC,TAC,CI". For
+     * CDMA this is in the form "SID,NID,BID" */
+    required string id = 4;
+}
+
+
+
+
+/*
+ *    Represents a single gps scan, updated every 200ms
+ */
+message GPSItem{
+
+    /* The timestamp of when the scan was made (in nanoseconds). This is
+     * acquried by SystemClock.elapsedRealtimeNanos() */
+    required uint64 timestamp = 1;
+
+    /* The number of visible satellites. This is acquired by
+     * GnssStatus.getSatelliteCount() and is updated every 200ms */
+    required uint32 count = 2;
+}
+
+
+
+
+
+/*
+ *    Represents a single piece of 1d sensor data
+ */
+message SensorData1D{
+
+    /* The value of the data. This is acquired by sensorEvent.values[0] where
+     * sensorEvent is of the android.hardware.SensorEvent class. The value
+     * varies depending on the type of sensor (for instance Sensor.TYPE_LIGHT
+     * and Sensor.TYPE_PRESSURE yield different units with differnt ranges in
+     * values) */
+    required float value = 1;
+
+    /* The timestamp of the sensor event (in nanoseconds). This is acquired by
+     * sensorEvent.timestamp where sensorEvent is of the
+     * android.hardware.SensorEvent class. From the documentation it seems that
+     * this value is created when the sensorEvent object is created, and takes
+     * on the value given by SystemClock.elapsedRealtimeNanos(). An example
+     * value of this is (1018852080967701) */
+    required uint64 timestamp = 2;
+}
+
+
+
+
+
+/*
+ *    Represents a single piece of 3d sensor data
+ */
+message SensorData3D{
+
+    /* The value of the data. This is acquired by sensorEvent.values[0],
+     * sensorEvent.values[1], and sensorEvent.values[2] where sensorEvent is of
+     * the android.hardware.SensorEvent class. The value varies depending on the
+     * type of sensor (for instance Sensor.ACCELEROMETER and
+     * Sensor.TYPE_GYROSCOPE yield different units with different ranges in
+     * values) but typically refer to the measured data along the x, y, and z
+     * axis */
+    required float x = 1;
+    required float y = 2;
+    required float z = 3;
+
+    /* The timestamp of the sensor event (in nanoseconds). This is acquired by
+     * sensorEvent.timestamp where sensorEvent is of the
+     * android.hardware.SensorEvent class. From the documentation it seems that
+     * this value is created when the sensorEvent object is created, and takes
+     * on the value given by SystemClock.elapsedRealtimeNanos(). An example
+     * value of this is (1018852080967701) */
+    required uint64 timestamp = 4;
+}
+
+
+
+
+
+/*
+ *    Represents the moment a user arrives at a location
+ */
+message MarkerEvent{
+
+    /* Location of the marker */
+    required Coordinate coordinate = 1;
+
+    /* The timestamp the user arrived at the marker (in nanoseconds). This is
+     * acquired by calling SystemClock.elapsedRealtimeNanos() whenever the user
+     * taps on the "Start", "Check-in", or "Finish" button. An example
+     * value of this is (1018852080967701) */
+    required uint64 timestamp = 2;
+
+    /* The floor number (alphanumeric) where the marker is located.
+     * Examples of this are (123A), (B12), and (8) */
+    required string floorNumber = 3;
+}
+
+
+
+
+
+/*
+ *    Represents the metadata and sensor data of the data collection
+ */
+message DataPack{
+
+    /* Represents if the user was collecting point, path, or multipath data.
+     * Specifically, Point=3, Path=4, Multipath=5 Stair=6 Exits=7*/
+    required uint32 state = 1;
+
+    /* Device metadata (manufacturer, model, sdk version, brand). This
+     * information is acquired through Build.MANUFACTURER, Build.MODEL,
+     * Build.VERSION.SDK_INT, and Build.BRAND where is of the android.os.Build
+     * class. An example value is (samsung, SM-G960F, 26, samsung) */
+    required string deviceInfo = 2;
+
+    /* The name of the building where the data collection took place. Examples
+     * of this value are (Information Technology Building) and (ETB) */
+    required string buildingName = 3;
+
+    /* Indicates whether bluetooth data, wifi data, or both were collected.
+     * Specifically, Both=0, WiFi=1, Bluetooth=2 */
+    required uint32 sensorState = 4;
+
+    /* The intended frequency of sensor scans (in nanoseconds). This is given by
+     * SENSOR_DELAY_NORMAL (200000000), SENSOR_DELAY_UI (60000000),
+     * SENSOR_DELAY_GAME (20000000), or SENSOR_DELAY_FASTEST (0) */
+    required uint64 sensorFrequency = 5;
+
+    /* A list of the wifi scans */
+    repeated RSSItem rssItems = 6;
+
+    /* A list of the bluetooth scans */
+    repeated BTItem btItems = 7;
+
+    /* Timestamps of step events in since the last device boot (in
+     * nanoseconds). This is acquired by calling
+     * SystemClock.elapsedRealtimeNanos() whenever a step event is detected */
+    repeated uint64 stepEvents = 8;
+
+    /* A list of the collected ambient light data */
+    repeated SensorData1D light = 9;
+
+    /* A list of the collected gyroscope data */
+    repeated SensorData3D gyroscope = 10;
+
+    /* A list of the collected magnetic data */
+    repeated SensorData3D magnetic = 11;
+
+    /* A list of the collected acceleration data */
+    repeated SensorData3D acceleration = 12;
+
+    /* A list of the collected linear acceleration data */
+    repeated SensorData3D linearAcc = 13;
+
+    /* A list of the visited markers. This will be one, two, or N markers for
+     * point, path, and multi-path collection, respectively. By accessing the
+     * first and last MarkerEvent you can determine the start and end timestamps
+     * and locations */
+    repeated MarkerEvent markers = 14;
+
+    /* A list of the cell scans */
+    repeated CellItem cellItems = 15;
+
+    /* A list of the gps scans */
+    repeated GPSItem gpsItems = 16;
+
+    /* The actual number of steps taken by the user (recorded by the user for
+     * step calibration) */
+    optional uint32 realStepNum = 17;
+
+    /* An optional field that can be used for testing */
+    optional string additionalField = 18;
+}

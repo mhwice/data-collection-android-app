@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!--<color name="skyblue">#07EFFE</color>-->
+    <!--<color name="white">#FFFFFF</color>-->
+    <!--<color name="off_white">#F8F8F8</color>-->
+    <!--<color name="line_color">#DFDFDF</color>-->
+    <!--<color name="raspberry">#39003D</color>-->
+
+    <color name="skyblue">#660022</color>
+<!--    <color name="skyblue">#6E77EF</color>-->
+    <color name="white">#202020</color>
+    <color name="off_white">#F8F8F8</color>
+    <color name="line_color">#DFDFDF</color>
+    <color name="raspberry">#660022</color>
+<!--    <color name="raspberry">#6E77EF</color>-->
+
+    <color name="marker_green">#7ED321</color>
+    <color name="marker_yellow">#F8E71C</color>
+    <color name="marker_red">#D0021B</color>
+    <color name="marker_gray">#8B8B8B</color>
+
+    <color name="pink">#ED4275</color>
+
+    <color name="lightpurple">#660022</color>
+<!--    <color name="lightpurple">#6E77EF</color>-->
+    <color name="darkpurple">#F3F3F3</color>
+<!--    <color name="darkpurple">#302865</color>-->
+    <color name="link">#660022</color>
+<!--    <color name="link">#6E77EF</color>-->
+    <color name="turq">#F3F3F3</color>
+<!--    <color name="turq">#302865</color>-->
+
+    <color name="dark">#202020</color>
+
+
+
+</resources>

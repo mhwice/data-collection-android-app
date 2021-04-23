@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">iLOS Site Survey</string>
+    <string name="access_token">pk.eyJ1IjoiZXNwcjNzc28iLCJhIjoiY2pxc2oyYzFpMGQyMzQ4bm5pdTRtMzd0OCJ9._wcliiEnma-8dNqh6GK_kA</string>
+    <string name="learn_more_text">Learn More</string>
+    <string name="forgot_password_text">Forgot Password?</string>
+    <string name="password_text">PASSWORD</string>
+    <string name="email_text">EMAIL</string>
+    <string name="get_started_text">Get Started</string>
+    <string name="ilos">iLOS</string>
+    <string name="bottom_sheet_peaktext">Options</string>
+    <string name="floor_text">Floor Number</string>
+    <string name="edit_marker_text">Edit Markers</string>
+    <string name="collect_fingerprint_text">Collect a Fingerprint</string>
+    <string name="sensor_options_text">Sensor Config</string>
+    <string name="wifi_text">WiFi</string>
+    <string name="bluetooth_text">Bluetooth</string>
+    <string name="point_text">Point</string>
+    <string name="path_text">Path</string>
+    <string name="multipath_text">Multipath</string>
+    <string name="add_marker">Add</string>
+    <string name="delete_marker">Delete</string>
+    <string name="inlineMultipath">:multipath:</string>
+    <string name="inlineAdd">:add:</string>
+    <string name="inlinePoint">:point:</string>
+    <string name="inlinePath">:path:</string>
+    <string name="inlineStair">:stair:</string>
+    <string name="inlineExits">:exits:</string>
+    <string name="stair_text">Stair</string>
+    <string name="io_text">Outdoors</string>
+
+    <string name="delete">Delete</string>
+    <string name="selectall">Select All</string>
+    <string name="search">Search</string>
+    <string name="storage">Storage</string>
+
+    <string name="downloading">Downloading...</string>
+    <string name="uploading">Uploading...</string>
+    <string name="calibrationMessageOne">Orient your device in a variety of different positions. In each position, pause for 3 seconds, then continue. Do this until the timer expires</string>
+    <string name="calibratonMessageTwo">Finished! You can now collect data.</string>
+</resources>

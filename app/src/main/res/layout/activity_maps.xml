@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:theme="@style/MapsScreenTheme"
+    android:fitsSystemWindows="false"
+    tools:context=".MapsScreen.MapsActivity">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_uiCompassMarginTop="40dp"
+        app:mapbox_uiCompassMarginRight="30dp"
+        app:mapbox_uiLogoMarginBottom="30dp"
+        app:mapbox_uiAttributionMarginBottom="30dp"
+        app:mapbox_uiAttributionTintColor="@android:color/darker_gray"
+        android:layout_marginBottom="48dp"/>
+
+    <FrameLayout
+        android:id="@+id/your_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/info_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:cardBackgroundColor="@color/off_white"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp" >
+            <TextView
+                android:id="@+id/outerInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp" />
+            <TextView
+                android:id="@+id/innerInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:textSize="14sp"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/outerInfoTextView"
+                android:background="@drawable/cardview_bg"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <include layout="@layout/bottom_sheet" />
+
+    <android.support.design.button.MaterialButton
+        android:elevation="8dp"
+        android:id="@+id/fab"
+        android:theme="@style/ExtendedFabTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Collect"
+        app:cornerRadius="60dp"
+        app:layout_anchor="@+id/bottom_sheet"
+        app:layout_anchorGravity="center|top"/>
+
+    <ImageView
+        android:id="@+id/close_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:visibility="invisible"
+        android:background="@drawable/close_button_bg"
+        app:layout_anchor="@+id/mapView"
+        app:layout_anchorGravity="left|top"
+        android:src="@drawable/close_icon"
+        android:scaleType="centerInside"
+        android:padding="10dp"
+        android:contentDescription="@null" />
+
+</android.support.design.widget.CoordinatorLayout>
